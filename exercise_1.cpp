@@ -97,14 +97,16 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 
-void dataFiller(){
+void dataFiller() {
     months = new monthData[monthsNumber];
     
     months[0].name = "June";
     months[0].products = new productData[productsNumber];
+    months[0].costs = 45640;  
 
     months[1].name = "August";
     months[1].products = new productData[productsNumber];
+    months[0].costs = 40590;
 
     for(int i = 0; i < monthsNumber; i++){
         for(int j = 0; j < productsNumber; j++){
@@ -114,6 +116,16 @@ void dataFiller(){
             months[i].products[j].soldUnits  = unitsSold[i][j];
         }
     }        
+}
+
+void operationsMonth() {
+    for(int i = 0; i < monthsNumber; i++){
+        for(int j = 0; j < productsNumber; j++){
+            months[i].sold += months[i].products[j].sold;
+            months[i].utilities += months[i].products[j].utility;
+        }
+        months[i].utilities = months[i].utilities - months[i].costs;
+    }  
 }
 
 // REFERENCES
