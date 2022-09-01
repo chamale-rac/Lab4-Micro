@@ -1,7 +1,6 @@
-
 /*
 *------------------------------------------
-* ex1_remastered.cpp
+* exercise_1.cpp
 * -----------------------------------------
 * UNIVERSIDAD DEL VALLE DE GUATEMALA
 * FACULTAD DE INGENIERÍA
@@ -9,11 +8,13 @@
 * CC3086 - Programacion de Microprocesadores
 *
 * by Samuel Chamalé
-* jueves, 25 de agosto del 2022
+* jueves, 1 de septiembre del 2022
 *------------------------------------------
-* Description: Basic program that multiplies prime numbers given an interval (Using threads).
+* Description: ...
 *------------------------------------------
 */
+
+
 
 #include <iostream>
 #include <pthread.h>
@@ -52,44 +53,32 @@ struct monthData {
     float utilities;
 };
 
-monthData *months;
-
 struct threadData {
     int month;
     int product;
 };
 
+monthData *months;
 threadData *thrData;
 
 void *operationsProduct(void *arg) {
-    threadData *pointer = (threadData*) arg;
-    int i = pointer -> month;
-    int j = pointer -> product;
-    
-    //std::cout << i << std::endl; 
-    //std::cout << j << std::endl; 
-    
-    months[i].products[j].sold = months[i].products[j].price * months[i].products[j].soldUnits;
-    months[i].products[j].utility = months[i].products[j].sold - (months[i].products[j].soldUnits * months[i].products[j].fixedCost);
+    threadData *ptr = (threadData*) arg;
+    productData *product = &months[(*ptr).month].products[(*ptr).product];
+    (*product).sold = (*product).price * (*product).soldUnits;  
+    (*product).utility = (*product).sold - ((*product).soldUnits * (*product).fixedCost); 
     return nullptr;
 }
 
 int main(int argc, char *argv[]) {
     dataFiller();
-  
-    pthread_t threads[16];
-    
-    thrData = new threadData[16];
+    pthread_t threads[monthsNumber*productsNumber];
+    thrData = new threadData[monthsNumber*productsNumber];
     
     int index = 0;
     for(int i = 0; i < monthsNumber; i++){
         for(int j = 0; j < productsNumber; j++){ 
             thrData[index].month = i;
             thrData[index].product = j;
-            //std::cout << thrData.month << std::endl; 
-            //std::cout << thrData.product << std::endl; 
-            std::cout << "\n" << std::endl; 
-            
             pthread_create(&threads[index], nullptr, operationsProduct, &thrData[index]);
             index++;
         }
@@ -104,7 +93,7 @@ int main(int argc, char *argv[]) {
     }
     
     operationsMonth();
-    //std::cout << "Total amount: " + std::to_string(totalSum) << std::endl;  
+    
     return 0;
 }
 
@@ -121,16 +110,11 @@ void dataFiller() {
 
     for(int i = 0; i < monthsNumber; i++){
         for(int j = 0; j < productsNumber; j++){
-            months[i].products[j].name = productNames[j];
-            months[i].products[j].price = unitPrices[j];
-            months[i].products[j].fixedCost = staticCosts[j];
-            months[i].products[j].soldUnits  = unitsSold[i][j];
-            
-            //std::cout << months[i].products[j].name << std::endl; 
-            //std::cout << months[i].products[j].price << std::endl; 
-            //std::cout << months[i].products[j].fixedCost << std::endl;
-            //std::cout << months[i].products[j].soldUnits << std::endl;
-            //std::cout << "\n" << std::endl; 
+            productData *product = &months[i].products[j];
+            (*product).name = productNames[j];
+            (*product).price = unitPrices[j];
+            (*product).fixedCost = staticCosts[j];
+            (*product).soldUnits  = unitsSold[i][j];
         }
     }        
 }
@@ -140,17 +124,11 @@ void operationsMonth() {
         for(int j = 0; j < productsNumber; j++){
             months[i].sold += months[i].products[j].sold;
             months[i].utilities += months[i].products[j].utility;
-            
-            //std::cout << months[i].products[j].name << std::endl; 
-            //std::cout << months[i].products[j].sold << std::endl; 
-            //std::cout << months[i].products[j].utility << std::endl; 
-            //std::cout << "\n" << std::endl; 
         }
         months[i].utilities = months[i].utilities - months[i].costs;
         std::cout << months[i].sold << std::endl; 
         std::cout << months[i].costs << std::endl; 
         std::cout << months[i].utilities << std::endl;  
         std::cout << "\n" << std::endl; 
-        
     }  
 }
