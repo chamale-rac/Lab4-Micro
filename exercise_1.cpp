@@ -106,7 +106,7 @@ void dataFiller() {
 
     months[1].name = "August";
     months[1].products = new productData[productsNumber];
-    months[0].costs = 40590;
+    months[1].costs = 40590;
 
     for(int i = 0; i < monthsNumber; i++){
         for(int j = 0; j < productsNumber; j++){
