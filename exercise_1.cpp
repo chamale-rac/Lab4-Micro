@@ -1,7 +1,7 @@
 
 /*
 *------------------------------------------
-* ex1_remastered.cpp
+* exercise_1.cpp
 * -----------------------------------------
 * UNIVERSIDAD DEL VALLE DE GUATEMALA
 * FACULTAD DE INGENIERÍA
@@ -9,9 +9,9 @@
 * CC3086 - Programacion de Microprocesadores
 *
 * by Samuel Chamalé
-* jueves, 25 de agosto del 2022
+* jueves, 1 de septiembre del 2022
 *------------------------------------------
-* Description: Basic program that multiplies prime numbers given an interval (Using threads).
+* Description: ... 
 *------------------------------------------
 */
 
