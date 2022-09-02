@@ -33,9 +33,8 @@ struct monthData {
 monthData *months;
 
 void *operationsProduct(void *arg) {
-    productData *product = (productData*) arg;
-    (*product).sold = (*product).price * (*product).soldUnits;  
-    (*product).utility = (*product).sold - ((*product).soldUnits * (*product).fixedCost); 
+    productData *p = (productData*) arg;
+    *p = {.sold = (p->price * p->soldUnits), .utility = p->soldUnits * (p->price  - p->fixedCost)};
     return nullptr;
 }
 
@@ -44,32 +43,23 @@ int main(int argc, char *argv[]) {
     months = new monthData[monthsNumber];
     
     for(int i = 0; i < monthsNumber; i++) {
-        monthData *month = &months[i];
-        (*month).products = new productData[productsNumber];
-        (*month).name = monthNames[i];
-        (*month).costs = monthCosts[i];
+        months[i] = {.name = monthNames[i], .products = new productData[productsNumber], .costs = monthCosts[i]};
         for(int j = 0; j < productsNumber; j++) { 
-            productData *product = &(*month).products[j];
-            (*product).name = productNames[j];
-            (*product).price = unitPrices[j];
-            (*product).fixedCost = staticCosts[j];
-            (*product).soldUnits  = unitsSold[i][j];
-            pthread_create(&threads[(i*productsNumber)+(j)], nullptr, operationsProduct, product);
+            months[i].products[j] = {.name = productNames[j], .price = unitPrices[j], .fixedCost = staticCosts[j], .soldUnits = unitsSold[i][j]};
+            pthread_create(&threads[(i*productsNumber)+(j)], nullptr, operationsProduct, &months[i].products[j]);
         }
     }
     
     for(int i = 0; i < monthsNumber; i++) {
-        monthData *month = &months[i];
         for(int j = 0; j < productsNumber; j++) { 
             pthread_join(threads[(i*productsNumber)+(j)], nullptr);
-            productData *product = &(*month).products[j];
-            (*month).sold += (*product).sold;
-            (*month).utilities += (*product).utility;
+            months[i].sold += months[i].products[j].sold;
+            months[i].utilities += months[i].products[j].utility;
         }
-        (*month).utilities = (*month).utilities - (*month).costs;
-        std::cout << (*month).sold << std::endl; 
-        std::cout << (*month).costs << std::endl; 
-        std::cout << (*month).utilities << std::endl;
+        months[i].utilities = months[i].utilities - months[i].costs;
+        std::cout << months[i].sold << std::endl; 
+        std::cout << months[i].costs << std::endl; 
+        std::cout << months[i].utilities << std::endl;
     }
     return 0;
 }
