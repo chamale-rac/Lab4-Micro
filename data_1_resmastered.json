@@ -1,0 +1,148 @@
+{
+    "months": [
+        {
+            "name": "julio",
+            "products": [
+                {
+                    "name": "Porcion pastel de chocolate",
+                    "price": 60,
+                    "fixedCost": 20,
+                    "soldUnits": 300,
+                    "sold": 0,
+                    "utility": 0
+                },
+                {
+                    "name": "White mocha",
+                    "price": 32,
+                    "fixedCost": 19.20,
+                    "soldUnits": 400,
+                    "sold": 0,
+                    "utility": 0
+                },
+                {
+                    "name": "Cafe americano 8onz",
+                    "price": 22,
+                    "fixedCost": 13.20,
+                    "soldUnits": 1590,
+                    "sold": 0,
+                    "utility": 0
+                },
+                {
+                    "name": "Latte 8onz",
+                    "price": 24,
+                    "fixedCost": 17.20,
+                    "soldUnits": 200,
+                    "sold": 0,
+                    "utility": 0
+                },
+                {
+                    "name": "Toffee coffee",
+                    "price": 28,
+                    "fixedCost": 20.10,
+                    "soldUnits": 390,
+                    "sold": 0,
+                    "utility": 0
+                },
+                {
+                    "name": "Cappuccino 8onz",
+                    "price": 24,
+                    "fixedCost": 17.20,
+                    "soldUnits": 1455,
+                    "sold": 0,
+                    "utility": 0
+                },
+                {
+                    "name": "S'mores Latte",
+                    "price": 32,
+                    "fixedCost": 23,
+                    "soldUnits": 800,
+                    "sold": 0,
+                    "utility": 0
+                },
+                {
+                    "name": "Café tostado molido",
+                    "price": 60,
+                    "fixedCost": 20,
+                    "soldUnits": 60,
+                    "sold": 0,
+                    "utility": 0
+                }
+            ],
+            "costs": 45640,
+            "sold": 0,
+            "utilities": 0
+        },
+        {
+            "name": "agosto",
+            "products": [
+                {
+                    "name": "Porcion pastel de chocolate",
+                    "price": 60,
+                    "fixedCost": 20,
+                    "soldUnits": 250,
+                    "sold": 0,
+                    "utility": 0
+                },
+                {
+                    "name": "White mocha",
+                    "price": 32,
+                    "fixedCost": 19.20,
+                    "soldUnits": 380,
+                    "sold": 0,
+                    "utility": 0
+                },
+                {
+                    "name": "Cafe americano 8onz",
+                    "price": 22,
+                    "fixedCost": 13.20,
+                    "soldUnits": 800,
+                    "sold": 0,
+                    "utility": 0
+                },
+                {
+                    "name": "Latte 8onz",
+                    "price": 24,
+                    "fixedCost": 17.20,
+                    "soldUnits": 250,
+                    "sold": 0,
+                    "utility": 0
+                },
+                {
+                    "name": "Toffee coffee",
+                    "price": 28,
+                    "fixedCost": 20.10,
+                    "soldUnits": 600,
+                    "sold": 0,
+                    "utility": 0
+                },
+                {
+                    "name": "Cappuccino 8onz",
+                    "price": 24,
+                    "fixedCost": 17.20,
+                    "soldUnits": 1200,
+                    "sold": 0,
+                    "utility": 0
+                },
+                {
+                    "name": "S'mores Latte",
+                    "price": 32,
+                    "fixedCost": 23,
+                    "soldUnits": 1540,
+                    "sold": 0,
+                    "utility": 0
+                },
+                {
+                    "name": "Café tostado molido",
+                    "price": 60,
+                    "fixedCost": 20,
+                    "soldUnits": 15,
+                    "sold": 0,
+                    "utility": 0
+                }
+            ],
+            "costs": 40590,
+            "sold": 0,
+            "utilities": 0
+        }
+    ]
+}
