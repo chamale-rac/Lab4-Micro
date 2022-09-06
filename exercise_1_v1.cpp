@@ -69,15 +69,17 @@ int main(int argc, char *argv[]) {
     }
     
     for(int i = 0; i < monthsNumber; i++) {
+        std::cout << "Reporte del mes: " << months[i].name << "\n" << "Ventas por producto: " << std::endl;
         for(int j = 0; j < productsNumber; j++) { 
-            pthread_join(threads[(i*productsNumber)+(j)], nullptr);
+            pthread_join(threads[(i*productsNumber)+(j)], nullptr);            
+            std::cout << "\t" + months[i].products[j].name + ": Q" << months[i].products[j].sold << std::endl;
             months[i].sold += months[i].products[j].sold;
-            months[i].utilities += months[i].products[j].utility;
+
         }
-        months[i].utilities = months[i].utilities - months[i].costs;
-        std::cout << months[i].sold << std::endl; 
-        std::cout << months[i].costs << std::endl; 
-        std::cout << months[i].utilities << std::endl;
+        months[i].utilities = months[i].sold - months[i].costs;
+        std::cout << "Total ventas: Q" << months[i].sold << std::endl; 
+        std::cout << "Costos variables: Q" << months[i].costs << std::endl; 
+        std::cout << "Utilidad del mes: Q" << months[i].utilities << "\n" << std::endl;
     }
     return 0;
 }
