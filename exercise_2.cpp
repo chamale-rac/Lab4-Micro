@@ -67,7 +67,6 @@ void *packerOperation(void *arg) {
     return NULL;
 }
 
-
 int main(int argc, char *argv[]) {
     pthread_t threads[threadsNumber];
     pthread_mutex_init(&mutex, NULL);
