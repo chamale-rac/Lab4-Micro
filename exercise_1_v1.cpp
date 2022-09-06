@@ -74,9 +74,10 @@ int main(int argc, char *argv[]) {
             pthread_join(threads[(i*productsNumber)+(j)], nullptr);            
             std::cout << "\t" + months[i].products[j].name + ": Q" << months[i].products[j].sold << std::endl;
             months[i].sold += months[i].products[j].sold;
+            months[i].utilities += months[i].products[j].utility;
 
         }
-        months[i].utilities = months[i].sold - months[i].costs;
+        months[i].utilities = months[i].utilities - months[i].costs;
         std::cout << "Total ventas: Q" << months[i].sold << std::endl; 
         std::cout << "Costos variables: Q" << months[i].costs << std::endl; 
         std::cout << "Utilidad del mes: Q" << months[i].utilities << "\n" << std::endl;
