@@ -56,8 +56,7 @@ void *packerOperation(void *arg) {
                 pthread_mutex_lock(&mutex);
                 std::cout << "Coffee lbs in silo: " + std::to_string(silo.coffeeDimension) << std::endl;
                 silo.coffeeDimension--;
-                pthread_mutex_unlock(&mutex); 
-                
+                pthread_mutex_unlock(&mutex);                 
                 vault.coffeeDimension++;      
                 std::cout << "Coffee lbs in vault: " + std::to_string(vault.coffeeDimension) << std::endl;    
                 std::cout << "The packer produced: 1 pack of 1 lb of toasted coffee;" << std::endl;
@@ -71,25 +70,16 @@ void *packerOperation(void *arg) {
 
 int main(int argc, char *argv[]) {
     pthread_t threads[threadsNumber];
-
     pthread_mutex_init(&mutex, NULL);
-
-
     pthread_create(&threads[0], NULL, toasterOperation, (void*)(1));
-    pthread_create(&threads[1], NULL, toasterOperation, (void*)(2));
-    
+    pthread_create(&threads[1], NULL, toasterOperation, (void*)(2));    
     pthread_create(&threads[2], NULL, packerOperation, NULL);
-    
     pthread_join(threads[0], NULL);
-    pthread_join(threads[1], NULL);
-    
+    pthread_join(threads[1], NULL);    
     pthread_join(threads[2], NULL);
-
     std::cout << "Coffee lbs in silo: " + std::to_string(silo.coffeeDimension) << std::endl;
     std::cout << "Coffee lbs in vault: " + std::to_string(vault.coffeeDimension) << std::endl;
-
-    pthread_mutex_destroy(&mutex);
-    
+    pthread_mutex_destroy(&mutex);    
     return 0;
 }
 
